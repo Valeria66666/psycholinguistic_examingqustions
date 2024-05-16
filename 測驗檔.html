@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Form</title>
+    <style>
+        .section {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form id="customForm" onsubmit="handleSubmit(event)">
+        <!-- 部分1: 基本資料 -->
+        <div class="section" id="section1">
+            <h2>部分1: 基本資料</h2>
+            <label for="name">姓名:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <button type="button" onclick="nextSection(2)">資料確認無誤 開始閱讀材料1</button>
+        </div>
+        
+        <!-- 部分2: 閱讀測驗1 -->
+        <div class="section" id="section2">
+            <h2>部分2: 閱讀測驗1</h2>
+            <p>
+IN A DIVERSE CITY, AN AMBITIOUS SCIENTIST AIMED TO EXPLORE AND ANALYZE THE COMPLEX NATURE OF HUMAN INTERACTIONS. SHE ATTEMPTED TO COMBINE HER FINDINGS WITH FINANCE TO BENEFIT SOCIETY. TO ENHANCE HER RESEARCH, SHE CONSULTED EXPERTS, CONFIRMED THEORIES, AND CAPTURED DATA. HER APPROACH WAS TO ENSURE THAT ALL VOICES WERE INCLUDED.
+
+SHE ANNOUNCED HER FINDINGS, DECLARING THEY COULD IMPROVE THE GENERAL OUTCOME OF SOCIAL HARMONY. DESPITE SOME DISPUTES, HER STUDY'S DISTINCT FEATURES GAINED APPROVAL. NEGLECT TURNED TO EMBRACE AS SHE DELIVERED HER INSIGHTS. THIS LED TO A SUCCESSFUL PROJECT, DISPLAYING HOW CAREFUL ANALYSIS AND CONSULTING CAN CONVERT ASSUMPTIONS INTO VALUABLE, PRACTICAL RESULTS.
+</p>
+            <button type="button" onclick="nextSection(3)">確認閱讀完成</button>
+        </div>
+        
+        <!-- 部分3: 閱讀測驗答1 -->
+        <div class="section" id="section3">
+            <h2>部分3: 閱讀測驗答1</h2>
+            <p>1. What approach did the scientist use to ensure her research on human interactions was comprehensive and beneficial?</p>
+            <input type="radio" id="answer1a" name="answer1" value="選項A">
+            <label for="answer1a">A. She focused only on her theories without consulting experts.</label><br>
+            <input type="radio" id="answer1b" name="answer1" value="選項B">
+            <label for="answer1b">B. She combined her findings with finance, consulted experts, confirmed theories, and captured data to include all voices.</label><br>
+            <input type="radio" id="answer1c" name="answer1" value="選項C">
+            <label for="answer1c">C. She ignored disputes and declared her findings without seeking approval.</label><br>
+            <input type="radio" id="answer1d" name="answer1" value="選項D">
+            <label for="answer1d">D. She concentrated solely on the financial aspects and ignored the social implications.</label><br><br>
+	    <p>2. True or False: The scientist's project was successful because she ignored disputes and focused only on her own assumptions.</p>
+            <input type="radio" id="answer2true" name="answer2" value="True">
+            <label for="answer2true">True</label><br>
+            <input type="radio" id="answer2false" name="answer2" value="False">
+            <label for="answer2false">False</label><br><br>
+            <button type="button" onclick="nextSection(4)">答案確認無誤 開始閱讀材料2</button>
+        </div>
+        
+        <!-- 部分4: 閱讀測驗2 -->
+        <div class="section" id="section4">
+            <h2>部分4: 閱讀測驗2</h2>
+            <p>
+In a bustling market, a merchant with an ambitious goal aimed to develop a unique approach to business. He combined traditional methods with modern finance to enhance his sales. He analyzed customer preferences, ensuring diverse products and capturing their interest.
+
+To ensure success, he consulted experts, arranged promotions, and announced special offers. He connected with suppliers, confirming quality and delivery schedules. Despite some disputes, his strategies gained approval.
+
+He displayed distinct items, which involved complex craftsmanship. The outcome was beneficial, as his business thrived. Neglect from competitors allowed him to proceed smoothly. This context of harmony in commerce showed how an innovative approach could improve overall results.
+</p>
+            <button type="button" onclick="nextSection(5)">確認閱讀完成</button>
+        </div>
+        
+        <!-- 部分5: 閱讀測驗答2 -->
+        <div class="section" id="section5">
+            <h2>部分5: 閱讀測驗答2</h2>
+            <p>1. What strategies did the merchant use to successfully enhance his business in the bustling market?</p>
+            <input type="radio" id="answer3a" name="answer3" value="選項A">
+            <label for="answer3a">A. He solely relied on traditional methods and ignored modern finance.</label><br>
+            <input type="radio" id="answer3b" name="answer3" value="選項B">
+            <label for="answer3b">B. He analyzed customer preferences, consulted experts, arranged promotions, and ensured quality delivery schedules.</label><br>
+            <input type="radio" id="answer3c" name="answer3" value="選項C">
+            <label for="answer3c">C. He avoided promotions and focused only on displaying complex craftsmanship.</label><br>
+            <input type="radio" id="answer3d" name="answer3" value="選項D">
+            <label for="answer3d">D. He neglected customer preferences and focused only on competing with other merchants.</label><br><br>
+	    <p>2. True or False: The merchant's success was due to his reliance solely on traditional methods without incorporating modern finance.</p>
+            <input type="radio" id="answer4true" name="answer4" value="True">
+            <label for="answer4true">True</label><br>
+            <input type="radio" id="answer4false" name="answer4" value="False">
+            <label for="answer4false">False</label><br><br>
+            <button type="button" onclick="completeForm()">提交</button>
+        </div>
+
+        <!-- 隐藏字段用于记录时间戳 -->
+        <input type="hidden" id="startTime" name="startTime">
+        <input type="hidden" id="timeSection1" name="timeSection1">
+        <input type="hidden" id="timeSection2" name="timeSection2">
+        <input type="hidden" id="timeSection3" name="timeSection3">
+        <input type="hidden" id="timeSection4" name="timeSection4">
+        <input type="hidden" id="timeSection5" name="timeSection5">
+        <input type="hidden" id="timeSection6" name="timeSection6">
+    </form>
+
+    <!-- 部分6: 結束 -->
+    <div class="section" id="section6">
+        <h2>部分6: 結束，感謝您的作答！</h2>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var startTime = new Date().toISOString();
+            document.getElementById('startTime').value = startTime;
+            showSection(1);
+        });
+
+        function showSection(sectionNumber) {
+            var sections = document.getElementsByClassName('section');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].style.display = 'none';
+            }
+            document.getElementById('section' + sectionNumber).style.display = 'block';
+        }
+
+        function nextSection(sectionNumber) {
+            var previousSection = sectionNumber - 1;
+            document.getElementById('timeSection' + previousSection).value = new Date().toISOString();
+            showSection(sectionNumber);
+        }
+
+        function completeForm() {
+            document.getElementById('timeSection5').value = new Date().toISOString();
+            document.getElementById('timeSection6').value = new Date().toISOString();
+            handleSubmit();
+        }
+
+        function handleSubmit(event) {
+            if (event) event.preventDefault();
+            var formData = new FormData(document.getElementById('customForm'));
+            var data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // 发送数据到Google Sheets
+            fetch('https://script.google.com/macros/s/AKfycbxmFWNq1hGjc-jnFCu0qKMBbff3fmSzECHrcf9GinYf7JHTA_NHI4q3sO5LXZz-BVbGfA/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => {
+                console.log('Success:', response);
+                showCompletionMessage();
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function showCompletionMessage() {
+            document.getElementById('customForm').style.display = 'none';
+            showSection(6);
+        }
+    </script>
+</body>
+</html>
